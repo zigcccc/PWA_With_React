@@ -2,8 +2,8 @@
   "name": "chatastrophe",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:scottdomes/chatastrophe.git",
-  "author": "YScott Domes <scott@musefind.com>",
+  "repository": "git@github.com:zigcccc/PWA_With_React.git",
+  "author": "Ziga Krasovec <zkrasovec@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "react": "^15.6.1",
