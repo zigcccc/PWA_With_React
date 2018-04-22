@@ -3,12 +3,8 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: [
-		// 'react-hot-loader/patch',
-		// 'webpack-dev-server/client?http://localhost:8080',
-		// 'webpack/hot/only-dev-server',
-		__dirname + '/src/index.js'
-	],
+	mode: 'development',
+	entry: ['babel-polyfill', __dirname + '/src/index.js'],
 	output: {
 		path: __dirname + '/public',
 		filename: 'bundle.js',
@@ -32,6 +28,11 @@ module.exports = {
 		]
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('development')
+			}
+		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			inject: true,

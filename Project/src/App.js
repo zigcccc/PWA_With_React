@@ -2,8 +2,13 @@ import React from 'react';
 import { hot } from 'react-hot-loader';
 import './app.css';
 
-const App = () => {
+const AppContainer = () => {
 	return <h1>Hello from React!</h1>;
 };
 
-export default hot(module)(App);
+const App =
+	process.env.NODE_ENV !== 'production'
+		? hot(module)(AppContainer)
+		: AppContainer;
+
+export default App;

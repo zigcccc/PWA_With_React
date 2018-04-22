@@ -1,10 +1,11 @@
 var webpack = require('webpack');
-var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+var ManifestPlugin = require('webpack-manifest-plugin');
 
 module.exports = {
-	entry: [__dirname + '/src/index.js'],
+	mode: 'production',
+	entry: ['babel-polyfill', __dirname + '/src/index.js'],
 	output: {
 		path: __dirname + '/build',
 		filename: 'bundle.js',
@@ -24,11 +25,15 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+			},
+			{
+				exclude: [/\.html$/, /\.css$/, /\.(js|jsx)$/, /\.json$/],
+				loader: 'file-loader',
+				options: {
+					name: 'static/media/[name].[ext]'
+				}
 			}
 		]
-	},
-	optimization: {
-		minimize: true
 	},
 	plugins: [
 		new webpack.DefinePlugin({
@@ -54,8 +59,7 @@ module.exports = {
 		}),
 		new UglifyJsPlugin({
 			test: /\.js($|\?)/i,
-			cache: true,
-			sourceMap: true,
+			//sourceMap: true,
 			uglifyOptions: {
 				compress: {
 					warnings: false,
@@ -65,6 +69,9 @@ module.exports = {
 					comments: false
 				}
 			}
+		}),
+		new ManifestPlugin({
+			fileName: 'asset-manifest.json'
 		})
 	]
 };
