@@ -1,2 +1,2 @@
-window.apiKey = "AIzaSyBlhnemwIkdtQhv9M8un9BoHIQeLHPfm_g";
-window.messagingSenderId = "120582509244"
+window.apiKey = 'AIzaSyBZ8mYbzwvx_rkBptfTvZYwAgaGKF11Q-c';
+window.messagingSenderId = '781251234375';

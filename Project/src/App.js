@@ -5,6 +5,18 @@ import './app.css';
 import LoginContainer from './components/LoginContainer';
 
 class AppContainer extends Component {
+	state = {
+		user: null
+	};
+	componentDidMount() {
+		firebase.auth().onAuthStateChanged(user => {
+			if (user) {
+				this.setState({
+					user
+				});
+			}
+		});
+	}
 	render() {
 		return (
 			<div id="container" className="inner-container">
