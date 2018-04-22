@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import './app.css';
 
-const AppContainer = () => {
-	return <h1>Hello from React!</h1>;
-};
+import LoginContainer from './components/LoginContainer';
+
+class AppContainer extends Component {
+	render() {
+		return (
+			<div id="container" className="inner-container">
+				<LoginContainer />
+			</div>
+		);
+	}
+}
 
 const App =
 	process.env.NODE_ENV !== 'production'
