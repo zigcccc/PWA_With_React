@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import { Route, withRouter } from 'react-router-dom';
 import './app.css';
 
 import LoginContainer from './components/LoginContainer';
+import ChatContainer from './components/ChatContainer';
+import UserContainer from './components/UserContainer';
 
 class AppContainer extends Component {
 	state = {
@@ -14,13 +17,24 @@ class AppContainer extends Component {
 				this.setState({
 					user
 				});
+			} else {
+				this.props.history.push('/login');
 			}
 		});
 	}
+	handleSubmitMsg = msg => {
+		console.log(msg);
+	};
 	render() {
 		return (
 			<div id="container" className="inner-container">
-				<LoginContainer />
+				<Route path="/login" component={LoginContainer} />
+				<Route
+					exact
+					path="/"
+					render={() => <ChatContainer onSubmit={this.handleSubmitMsg} />}
+				/>
+				<Route path="/users/:id" component={UserContainer} />
 			</div>
 		);
 	}
@@ -31,4 +45,4 @@ const App =
 		? hot(module)(AppContainer)
 		: AppContainer;
 
-export default App;
+export default withRouter(App);
